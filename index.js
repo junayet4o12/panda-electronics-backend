@@ -29,6 +29,11 @@ async function run() {
         const database = client.db("TechnologyShop");
         const companycollection = database.collection("company");
         const applecollection = database.collection("apple");
+        const huaweicollection = database.collection("huawei");
+        const xiaomicollection = database.collection("xiaomi");
+        const onepluscollection = database.collection("oneplus");
+        const samsungcollection = database.collection("samsung");
+        const oppocollection = database.collection("oppo");
 
 
 
@@ -44,7 +49,7 @@ async function run() {
             const company = await companycollection.findOne(cursor);
             res.send(company);
         })
-        app.post('/apple', async(req, res)=> {
+        app.post('/apple', async (req, res) => {
             const product = req.body;
             const result = await applecollection.insertOne(product);
             res.send(result);
@@ -56,6 +61,23 @@ async function run() {
 
         })
         app.get('/apple/:name', async (req, res) => {
+            const name = req.params.name;
+            const cursor = { name: (name) };
+            const product = await applecollection.findOne(cursor);
+            res.send(product);
+        })
+        app.post('/huawei', async (req, res) => {
+            const product = req.body;
+            const result = await huaweicollection.insertOne(product);
+            res.send(result);
+        })
+        app.get('/huawei', async (req, res) => {
+            const huaweiproduct = huaweicollection.find();
+            const result = await huaweiproduct.toArray();
+            res.send(result);
+
+        })
+        app.get('/huawei/:name', async (req, res) => {
             const name = req.params.name;
             const cursor = { name: (name) };
             const product = await companycollection.findOne(cursor);

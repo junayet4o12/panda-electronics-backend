@@ -80,7 +80,24 @@ async function run() {
         app.get('/huawei/:name', async (req, res) => {
             const name = req.params.name;
             const cursor = { name: (name) };
-            const product = await companycollection.findOne(cursor);
+            const product = await huaweicollection.findOne(cursor);
+            res.send(product);
+        })
+        app.post('/oneplus', async (req, res) => {
+            const product = req.body;
+            const result = await onepluscollection.insertOne(product);
+            res.send(result);
+        })
+        app.get('/oneplus', async (req, res) => {
+            const oneplusproduct = onepluscollection.find();
+            const result = await oneplusproduct.toArray();
+            res.send(result);
+
+        })
+        app.get('/oneplus/:name', async (req, res) => {
+            const name = req.params.name;
+            const cursor = { name: (name) };
+            const product = await onepluscollection.findOne(cursor);
             res.send(product);
         })
 

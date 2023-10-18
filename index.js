@@ -100,6 +100,7 @@ async function run() {
             const product = await onepluscollection.findOne(cursor);
             res.send(product);
         })
+        
         app.post('/samsung', async (req, res) => {
             const product = req.body;
             const result = await samsungcollection.insertOne(product);
@@ -115,6 +116,41 @@ async function run() {
             const name = req.params.name;
             const cursor = { name: (name) };
             const product = await samsungcollection.findOne(cursor);
+            res.send(product);
+        })
+        app.post('/xiaomi', async (req, res) => {
+            const product = req.body;
+            const result = await xiaomicollection.insertOne(product);
+            res.send(result);
+        })
+        app.get('/xiaomi', async (req, res) => {
+            const xiaomiproduct = xiaomicollection.find();
+            const result = await xiaomiproduct.toArray();
+            res.send(result);
+
+        })
+        app.get('/xiaomi/:name', async (req, res) => {
+            const name = req.params.name;
+            const cursor = { name: (name) };
+            const product = await xiaomicollection.findOne(cursor);
+            res.send(product);
+        })
+        
+        app.post('/oppo', async (req, res) => {
+            const product = req.body;
+            const result = await oppocollection.insertOne(product);
+            res.send(result);
+        })
+        app.get('/oppo', async (req, res) => {
+            const oppoproduct = oppocollection.find();
+            const result = await oppoproduct.toArray();
+            res.send(result);
+
+        })
+        app.get('/oppo/:name', async (req, res) => {
+            const name = req.params.name;
+            const cursor = { name: (name) };
+            const product = await oppocollection.findOne(cursor);
             res.send(product);
         })
 

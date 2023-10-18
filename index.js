@@ -100,6 +100,23 @@ async function run() {
             const product = await onepluscollection.findOne(cursor);
             res.send(product);
         })
+        app.post('/samsung', async (req, res) => {
+            const product = req.body;
+            const result = await samsungcollection.insertOne(product);
+            res.send(result);
+        })
+        app.get('/samsung', async (req, res) => {
+            const samsungproduct = samsungcollection.find();
+            const result = await samsungproduct.toArray();
+            res.send(result);
+
+        })
+        app.get('/samsung/:name', async (req, res) => {
+            const name = req.params.name;
+            const cursor = { name: (name) };
+            const product = await samsungcollection.findOne(cursor);
+            res.send(product);
+        })
 
 
 

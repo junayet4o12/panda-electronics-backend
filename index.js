@@ -63,9 +63,28 @@ async function run() {
         })
         app.get('/apple/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await applecollection.findOne(cursor);
             res.send(product);
+        })
+        app.put('/apple/:id', async (req, res) => {
+            const id = req.params.id;
+            const product = req.body;
+            const query = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedproduct = {
+                $set: {
+                    name: product.name,
+                    brandname: product.brandname,
+                    photo: product.photo,
+                    price: product.price,
+                    category: product.category,
+                    rating: product.rating,
+                    details: product.details
+                }
+            }
+            const result = await applecollection.updateOne(query, updatedproduct, options)
+            res.send(result)
         })
         app.post('/huawei', async (req, res) => {
             const product = req.body;
@@ -80,10 +99,30 @@ async function run() {
         })
         app.get('/huawei/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await huaweicollection.findOne(cursor);
             res.send(product);
         })
+        app.put('/huawei/:id', async (req, res) => {
+            const id = req.params.id;
+            const product = req.body;
+            const query = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedproduct = {
+                $set: {
+                    name: product.name,
+                    brandname: product.brandname,
+                    photo: product.photo,
+                    price: product.price,
+                    category: product.category,
+                    rating: product.rating,
+                    details: product.details
+                }
+            }
+            const result = await huaweicollection.updateOne(query, updatedproduct, options)
+            res.send(result)
+        })
+
         app.post('/oneplus', async (req, res) => {
             const product = req.body;
             const result = await onepluscollection.insertOne(product);
@@ -97,11 +136,30 @@ async function run() {
         })
         app.get('/oneplus/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await onepluscollection.findOne(cursor);
             res.send(product);
         })
-        
+        app.put('/oneplus/:id', async (req, res) => {
+            const id = req.params.id;
+            const product = req.body;
+            const query = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedproduct = {
+                $set: {
+                    name: product.name,
+                    brandname: product.brandname,
+                    photo: product.photo,
+                    price: product.price,
+                    category: product.category,
+                    rating: product.rating,
+                    details: product.details
+                }
+            }
+            const result = await onepluscollection.updateOne(query, updatedproduct, options)
+            res.send(result)
+        })
+
         app.post('/samsung', async (req, res) => {
             const product = req.body;
             const result = await samsungcollection.insertOne(product);
@@ -115,9 +173,28 @@ async function run() {
         })
         app.get('/samsung/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await samsungcollection.findOne(cursor);
             res.send(product);
+        })
+        app.put('/samsung/:id', async (req, res) => {
+            const id = req.params.id;
+            const product = req.body;
+            const query = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedproduct = {
+                $set: {
+                    name: product.name,
+                    brandname: product.brandname,
+                    photo: product.photo,
+                    price: product.price,
+                    category: product.category,
+                    rating: product.rating,
+                    details: product.details
+                }
+            }
+            const result = await samsungcollection.updateOne(query, updatedproduct, options)
+            res.send(result)
         })
         app.post('/xiaomi', async (req, res) => {
             const product = req.body;
@@ -132,11 +209,30 @@ async function run() {
         })
         app.get('/xiaomi/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await xiaomicollection.findOne(cursor);
             res.send(product);
         })
-        
+        app.put('/xiaomi/:id', async (req, res) => {
+            const id = req.params.id;
+            const product = req.body;
+            const query = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedproduct = {
+                $set: {
+                    name: product.name,
+                    brandname: product.brandname,
+                    photo: product.photo,
+                    price: product.price,
+                    category: product.category,
+                    rating: product.rating,
+                    details: product.details
+                }
+            }
+            const result = await xiaomicollection.updateOne(query, updatedproduct, options)
+            res.send(result)
+        })
+
         app.post('/oppo', async (req, res) => {
             const product = req.body;
             const result = await oppocollection.insertOne(product);
@@ -150,9 +246,28 @@ async function run() {
         })
         app.get('/oppo/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await oppocollection.findOne(cursor);
             res.send(product);
+        })
+        app.put('/oppo/:id', async (req, res) => {
+            const id = req.params.id;
+            const product = req.body;
+            const query = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedproduct = {
+                $set: {
+                    name: product.name,
+                    brandname: product.brandname,
+                    photo: product.photo,
+                    price: product.price,
+                    category: product.category,
+                    rating: product.rating,
+                    details: product.details
+                }
+            }
+            const result = await oppocollection.updateOne(query, updatedproduct, options)
+            res.send(result)
         })
         app.post('/client', async (req, res) => {
             const product = req.body;
@@ -167,9 +282,15 @@ async function run() {
         })
         app.get('/client/:id', async (req, res) => {
             const id = req.params.id;
-            const cursor = { _id: new ObjectId (id) };
+            const cursor = { _id: new ObjectId(id) };
             const product = await clientproducts.findOne(cursor);
             res.send(product);
+        })
+        app.delete('/client/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await clientproducts.deleteOne(query);
+            res.send(result)
         })
 
 

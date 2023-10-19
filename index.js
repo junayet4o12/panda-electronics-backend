@@ -34,6 +34,7 @@ async function run() {
         const onepluscollection = database.collection("oneplus");
         const samsungcollection = database.collection("samsung");
         const oppocollection = database.collection("oppo");
+        const clientproducts = database.collection("ClientProducts");
 
 
 
@@ -60,9 +61,9 @@ async function run() {
             res.send(result);
 
         })
-        app.get('/apple/:name', async (req, res) => {
-            const name = req.params.name;
-            const cursor = { name: (name) };
+        app.get('/apple/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
             const product = await applecollection.findOne(cursor);
             res.send(product);
         })
@@ -77,9 +78,9 @@ async function run() {
             res.send(result);
 
         })
-        app.get('/huawei/:name', async (req, res) => {
-            const name = req.params.name;
-            const cursor = { name: (name) };
+        app.get('/huawei/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
             const product = await huaweicollection.findOne(cursor);
             res.send(product);
         })
@@ -94,9 +95,9 @@ async function run() {
             res.send(result);
 
         })
-        app.get('/oneplus/:name', async (req, res) => {
-            const name = req.params.name;
-            const cursor = { name: (name) };
+        app.get('/oneplus/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
             const product = await onepluscollection.findOne(cursor);
             res.send(product);
         })
@@ -112,9 +113,9 @@ async function run() {
             res.send(result);
 
         })
-        app.get('/samsung/:name', async (req, res) => {
-            const name = req.params.name;
-            const cursor = { name: (name) };
+        app.get('/samsung/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
             const product = await samsungcollection.findOne(cursor);
             res.send(product);
         })
@@ -129,9 +130,9 @@ async function run() {
             res.send(result);
 
         })
-        app.get('/xiaomi/:name', async (req, res) => {
-            const name = req.params.name;
-            const cursor = { name: (name) };
+        app.get('/xiaomi/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
             const product = await xiaomicollection.findOne(cursor);
             res.send(product);
         })
@@ -147,10 +148,27 @@ async function run() {
             res.send(result);
 
         })
-        app.get('/oppo/:name', async (req, res) => {
-            const name = req.params.name;
-            const cursor = { name: (name) };
+        app.get('/oppo/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
             const product = await oppocollection.findOne(cursor);
+            res.send(product);
+        })
+        app.post('/client', async (req, res) => {
+            const product = req.body;
+            const result = await clientproducts.insertOne(product);
+            res.send(result);
+        })
+        app.get('/client', async (req, res) => {
+            const clientproduct = clientproducts.find();
+            const result = await clientproduct.toArray();
+            res.send(result);
+
+        })
+        app.get('/client/:id', async (req, res) => {
+            const id = req.params.id;
+            const cursor = { _id: new ObjectId (id) };
+            const product = await clientproducts.findOne(cursor);
             res.send(product);
         })
 
